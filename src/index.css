@@ -27,7 +27,7 @@ body {
 .temperature-display {
 	display: flex;
 	border-radius: 50%;
-	color: #ffffff;
+	color: #720f0f;
 	height: 220px;
 	width: 220px;
 	text-align: center;
@@ -73,9 +73,4 @@ button:focus {
 
 .hot {
 	background: #ff5200;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
