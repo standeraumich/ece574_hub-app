@@ -75,12 +75,11 @@ export default function App() {
           <h1>Smart Home Hub</h1>
         </header>
         <div className='parent-container'>
-          <Widget onClick={() => { setPopUpTrigger(true); setGraphType("Temperature") }} color={tempColor} sensorData={renderThermistor()} title={"Temperature"} />
-          <Widget onClick={() => { setPopUpTrigger(true); setGraphType("Humidity") }} color={humidColor} sensorData={renderHumidity()} title={"Humidity"} />
+          <Widget onClick={() => { setPopUpTrigger(true); setGraphType("thermistor") }} color={tempColor} sensorData={renderThermistor()} title={"Temperature"} symbol={"°F"} />
+          <Widget onClick={() => { setPopUpTrigger(true); setGraphType("humidity") }} color={humidColor} sensorData={renderHumidity()} title={"Humidity"} symbol={"%"} />
         </div>
       </main>
-      <Popup trigger={popUpTrigger} graphType={graphType} setTrigger={setPopUpTrigger} >
-        <h3> POPUP BITCH</h3>
+      <Popup trigger={popUpTrigger} title={graphType} setTrigger={setPopUpTrigger} sensor={graphType}>
       </Popup>
     </div>
   );
