@@ -10,6 +10,7 @@ export default function App() {
   const [humidColor, setHumidColor] = useState("med-humid")
   const [popUpTrigger, setPopUpTrigger] = useState(false)
   const [graphType, setGraphType] = useState("")
+  const [graphTitle, setGraphTitle] = useState("")
 
   async function updateSensorLatest() {
     await Axios.get(`http://${process.env.REACT_APP_API_HOST}:3001/sensors/latest`)
@@ -41,7 +42,6 @@ export default function App() {
 
   function renderThermistor() {
     const { DataisLoaded, sensors } = sensorData;
-    console.log('in renderThermistor')
     if (!DataisLoaded) {
       return <div>Loading...</div>
     }
@@ -52,7 +52,6 @@ export default function App() {
 
   function renderHumidity() {
     const { DataisLoaded, sensors } = sensorData;
-    console.log('in renderHumidity')
     if (!DataisLoaded) {
       return <div>Loading...</div>
     }
@@ -75,12 +74,11 @@ export default function App() {
           <h1>Smart Home Hub</h1>
         </header>
         <div className='parent-container'>
-          <Widget onClick={() => { setPopUpTrigger(true); setGraphType("thermistor") }} color={tempColor} sensorData={renderThermistor()} title={"Temperature"} symbol={"°F"} />
-          <Widget onClick={() => { setPopUpTrigger(true); setGraphType("humidity") }} color={humidColor} sensorData={renderHumidity()} title={"Humidity"} symbol={"%"} />
+          <Widget onClick={() => { setPopUpTrigger(true); setGraphType("thermistor"); setGraphTitle("All Temperature Data") }} color={tempColor} sensorData={renderThermistor()} title={"Temperature"} symbol={"°F"} />
+          <Widget onClick={() => { setPopUpTrigger(true); setGraphType("humidity"); setGraphTitle("All Humidity Data") }} color={humidColor} sensorData={renderHumidity()} title={"Humidity"} symbol={"%"} />
         </div>
       </main>
-      <Popup trigger={popUpTrigger} title={graphType} setTrigger={setPopUpTrigger} sensor={graphType}>
-      </Popup>
+      <Popup trigger={popUpTrigger} title={graphTitle} setTrigger={setPopUpTrigger} sensor={graphType} />
     </div>
   );
 }
